@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Parental Attribution Error</title>
+    <title>The Parental Attribution Error | El Error de Atribución Parental</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
@@ -43,6 +43,50 @@
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            padding: 4px;
+            box-shadow: 0 2px 20px rgba(44, 40, 37, 0.12);
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            color: var(--color-text);
+        }
+
+        .lang-btn.active {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        /* Language visibility */
+        .lang-es { display: none; }
+        body.spanish .lang-en { display: none; }
+        body.spanish .lang-es { display: block; }
+        body.spanish .lang-es-inline { display: inline; }
+        body.spanish .lang-en-inline { display: none; }
+        .lang-en-inline { display: inline; }
+        .lang-es-inline { display: none; }
 
         /* Hero Section */
         .hero {
@@ -483,17 +527,43 @@
             .pullquote {
                 font-size: 1.25rem;
             }
+
+            .lang-toggle {
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .lang-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
+        <button class="lang-btn" id="btn-es" onclick="setLanguage('es')">Español</button>
+    </div>
+
     <!-- Hero -->
     <header class="hero">
-        <p class="hero-eyebrow">From Modern Wisdom</p>
-        <h1>The Parental Attribution Error</h1>
-        <p class="hero-subtitle">We blame our parents for our flaws while claiming our strengths as our own—but what if both come from the same source?</p>
+        <p class="hero-eyebrow">
+            <span class="lang-en">From Modern Wisdom</span>
+            <span class="lang-es">De Modern Wisdom</span>
+        </p>
+        <h1>
+            <span class="lang-en">The Parental Attribution Error</span>
+            <span class="lang-es">El Error de Atribución Parental</span>
+        </h1>
+        <p class="hero-subtitle">
+            <span class="lang-en">We blame our parents for our flaws while claiming our strengths as our own—but what if both come from the same source?</span>
+            <span class="lang-es">Culpamos a nuestros padres por nuestros defectos mientras reclamamos nuestras fortalezas como propias—pero ¿y si ambas provienen de la misma fuente?</span>
+        </p>
         <div class="scroll-indicator">
-            <span>Read</span>
+            <span class="lang-en">Read</span>
+            <span class="lang-es">Leer</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             </svg>
@@ -503,27 +573,56 @@
     <!-- Core Concept -->
     <main class="content">
         <section class="section">
-            <h2>The Core Concept</h2>
-            <p>We love blaming our parents. It's practically a rite of passage in modern psychology. But there's a double standard buried in the trend: we attribute what's broken in us to our upbringings while claiming that what's strong is ours alone.</p>
-            <p>Call it the <span class="highlight">parental attribution error</span>.</p>
-            <p>It's similar to the fundamental attribution error, where we blame others' actions on their character but excuse our own by pointing to circumstance. <em>"I cut that guy off because I'm late for work. He cut me off because he's a jerk."</em> It's a skewed way of assigning credit and blame—we externalize the bad and internalize the good. We're quick to blame and slow to credit.</p>
+            <h2>
+                <span class="lang-en">The Core Concept</span>
+                <span class="lang-es">El Concepto Central</span>
+            </h2>
+            <p>
+                <span class="lang-en">We love blaming our parents. It's practically a rite of passage in modern psychology. But there's a double standard buried in the trend: we attribute what's broken in us to our upbringings while claiming that what's strong is ours alone.</span>
+                <span class="lang-es">Nos encanta culpar a nuestros padres. Es prácticamente un rito de iniciación en la psicología moderna. Pero hay un doble estándar enterrado en esta tendencia: atribuimos lo que está roto en nosotros a nuestra crianza mientras reclamamos que lo fuerte es únicamente nuestro.</span>
+            </p>
+            <p>
+                <span class="lang-en">Call it the <span class="highlight">parental attribution error</span>.</span>
+                <span class="lang-es">Llámalo el <span class="highlight">error de atribución parental</span>.</span>
+            </p>
+            <p>
+                <span class="lang-en">It's similar to the fundamental attribution error, where we blame others' actions on their character but excuse our own by pointing to circumstance. <em>"I cut that guy off because I'm late for work. He cut me off because he's a jerk."</em> It's a skewed way of assigning credit and blame—we externalize the bad and internalize the good. We're quick to blame and slow to credit.</span>
+                <span class="lang-es">Es similar al error fundamental de atribución, donde culpamos las acciones de otros a su carácter pero excusamos las nuestras señalando las circunstancias. <em>"Le cerré el paso a ese tipo porque llego tarde al trabajo. Él me cerró el paso porque es un idiota."</em> Es una forma sesgada de asignar crédito y culpa—externalizamos lo malo e internalizamos lo bueno. Somos rápidos para culpar y lentos para reconocer.</span>
+            </p>
         </section>
     </main>
 
     <!-- Double-Edged Sword Examples -->
     <section class="sword-section">
         <div class="sword-section-header">
-            <h2>The Double-Edged Sword</h2>
-            <p>Consider how the same experiences that create our wounds often forge our strengths.</p>
+            <h2>
+                <span class="lang-en">The Double-Edged Sword</span>
+                <span class="lang-es">La Espada de Doble Filo</span>
+            </h2>
+            <p>
+                <span class="lang-en">Consider how the same experiences that create our wounds often forge our strengths.</span>
+                <span class="lang-es">Considera cómo las mismas experiencias que crean nuestras heridas a menudo forjan nuestras fortalezas.</span>
+            </p>
         </div>
 
         <div class="trait-grid">
             <!-- Anxious Attachment -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Anxious Attachment</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Anxious Attachment</span>
+                        <span class="lang-es">Apego Ansioso</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You say you're anxiously attached because no one held you when you needed it.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You say you're anxiously attached because no one held you when you needed it.</span>
+                        <span class="lang-es">Dices que tienes apego ansioso porque nadie te sostuvo cuando lo necesitabas.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -531,17 +630,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But isn't your ability to be alone with your emotions and endure discomfort quietly also forged in the same crucible?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But isn't your ability to be alone with your emotions and endure discomfort quietly also forged in the same crucible?</span>
+                        <span class="lang-es">Pero ¿no es tu capacidad de estar solo con tus emociones y soportar la incomodidad en silencio también forjada en el mismo crisol?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Perfectionism -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Perfectionism</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Perfectionism</span>
+                        <span class="lang-es">Perfeccionismo</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You blame your parents for pushing you too hard in school, convinced it made you perfectionistic and neurotic.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You blame your parents for pushing you too hard in school, convinced it made you perfectionistic and neurotic.</span>
+                        <span class="lang-es">Culpas a tus padres por presionarte demasiado en la escuela, convencido de que te hizo perfeccionista y neurótico.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -549,17 +665,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But when was the last time you acknowledged that same pressure gave you ambition, discipline, and drive?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But when was the last time you acknowledged that same pressure gave you ambition, discipline, and drive?</span>
+                        <span class="lang-es">Pero ¿cuándo fue la última vez que reconociste que esa misma presión te dio ambición, disciplina y determinación?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Fear of Failure -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Fear of Failure</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Fear of Failure</span>
+                        <span class="lang-es">Miedo al Fracaso</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You point to a childhood where mistakes weren't tolerated as the reason you fear failure.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You point to a childhood where mistakes weren't tolerated as the reason you fear failure.</span>
+                        <span class="lang-es">Señalas una infancia donde los errores no se toleraban como la razón por la que temes al fracaso.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -567,17 +700,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But what about your meticulousness, your standards, your refusal to phone it in?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But what about your meticulousness, your standards, your refusal to phone it in?</span>
+                        <span class="lang-es">Pero ¿qué hay de tu meticulosidad, tus estándares, tu negativa a hacer las cosas a medias?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Attunement to Others -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Attunement to Others</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Attunement to Others</span>
+                        <span class="lang-es">Sintonía con los Demás</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You complain that no one ever asked what you wanted growing up.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You complain that no one ever asked what you wanted growing up.</span>
+                        <span class="lang-es">Te quejas de que nadie te preguntó nunca qué querías mientras crecías.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -585,17 +735,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But could that also be why you're so tuned in to what everyone else needs?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But could that also be why you're so tuned in to what everyone else needs?</span>
+                        <span class="lang-es">Pero ¿podría ser también por eso que estás tan sintonizado con lo que todos los demás necesitan?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Low Self-Worth -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Low Self-Worth</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Low Self-Worth</span>
+                        <span class="lang-es">Baja Autoestima</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You say your low self-worth comes from never being praised.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You say your low self-worth comes from never being praised.</span>
+                        <span class="lang-es">Dices que tu baja autoestima viene de nunca haber sido elogiado.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -603,17 +770,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But isn't that the same fuel that makes you outwork everyone around you?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But isn't that the same fuel that makes you outwork everyone around you?</span>
+                        <span class="lang-es">Pero ¿no es ese mismo combustible el que te hace trabajar más duro que todos a tu alrededor?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Conflict Avoidance -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Conflict Avoidance</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Conflict Avoidance</span>
+                        <span class="lang-es">Evitación del Conflicto</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You trace your conflict avoidance back to all the shouting at home.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You trace your conflict avoidance back to all the shouting at home.</span>
+                        <span class="lang-es">Atribuyes tu evitación del conflicto a todos los gritos en casa.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -621,17 +805,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But isn't that also where your talent for de-escalation and emotional radar came from?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But isn't that also where your talent for de-escalation and emotional radar came from?</span>
+                        <span class="lang-es">Pero ¿no es también de ahí de donde vino tu talento para desescalar situaciones y tu radar emocional?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Hyper-Independence -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Hyper-Independence</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Hyper-Independence</span>
+                        <span class="lang-es">Hiperindependencia</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You chalk up your hyper-independence to not being able to trust anyone.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You chalk up your hyper-independence to not being able to trust anyone.</span>
+                        <span class="lang-es">Atribuyes tu hiperindependencia a no poder confiar en nadie.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -639,17 +840,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But isn't that also what made you capable, adaptable, and calm under pressure?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But isn't that also what made you capable, adaptable, and calm under pressure?</span>
+                        <span class="lang-es">Pero ¿no es eso también lo que te hizo capaz, adaptable y tranquilo bajo presión?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Emotional Guardedness -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Emotional Guardedness</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Emotional Guardedness</span>
+                        <span class="lang-es">Reserva Emocional</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You say you're emotionally guarded because no one took your feelings seriously.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You say you're emotionally guarded because no one took your feelings seriously.</span>
+                        <span class="lang-es">Dices que eres emocionalmente reservado porque nadie tomó tus sentimientos en serio.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -657,17 +875,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But isn't that also why you're steady when the people around you fall apart?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But isn't that also why you're steady when the people around you fall apart?</span>
+                        <span class="lang-es">Pero ¿no es eso también por lo que te mantienes firme cuando las personas a tu alrededor se derrumban?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- People-Pleasing -->
             <article class="trait-card">
-                <div class="trait-title"><h3>People-Pleasing</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">People-Pleasing</span>
+                        <span class="lang-es">Complacer a los Demás</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You've labeled yourself a people pleaser because you had to keep the peace at home.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You've labeled yourself a people pleaser because you had to keep the peace at home.</span>
+                        <span class="lang-es">Te has etiquetado como alguien que complace a los demás porque tenías que mantener la paz en casa.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -675,17 +910,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But maybe that's also where your social fluency and emotional intelligence were born.</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But maybe that's also where your social fluency and emotional intelligence were born.</span>
+                        <span class="lang-es">Pero quizás también es ahí donde nacieron tu fluidez social y tu inteligencia emocional.</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Poor Boundaries -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Poor Boundaries</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Poor Boundaries</span>
+                        <span class="lang-es">Límites Débiles</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You blame your poor boundaries on parents who didn't respect yours.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You blame your poor boundaries on parents who didn't respect yours.</span>
+                        <span class="lang-es">Culpas tus límites débiles a padres que no respetaron los tuyos.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -693,17 +945,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But isn't that also why you're so careful not to cross anyone else's?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But isn't that also why you're so careful not to cross anyone else's?</span>
+                        <span class="lang-es">Pero ¿no es eso también por lo que tienes tanto cuidado de no cruzar los de nadie más?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Fear of Being a Burden -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Fear of Being a Burden</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Fear of Being a Burden</span>
+                        <span class="lang-es">Miedo a Ser una Carga</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You say your fear of being a burden comes from being treated like one.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You say your fear of being a burden comes from being treated like one.</span>
+                        <span class="lang-es">Dices que tu miedo a ser una carga viene de haber sido tratado como una.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -711,17 +980,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But isn't that the same fear that now makes you reliable, disciplined, and impossible to disappoint?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But isn't that the same fear that now makes you reliable, disciplined, and impossible to disappoint?</span>
+                        <span class="lang-es">Pero ¿no es ese mismo miedo el que ahora te hace confiable, disciplinado e imposible de decepcionar?</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Sensitivity to Criticism -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Sensitivity to Criticism</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Sensitivity to Criticism</span>
+                        <span class="lang-es">Sensibilidad a la Crítica</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You attribute your sensitivity to criticism to all the judgment you grew up with.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You attribute your sensitivity to criticism to all the judgment you grew up with.</span>
+                        <span class="lang-es">Atribuyes tu sensibilidad a la crítica a todo el juicio con el que creciste.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -729,17 +1015,34 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But that's also what makes you thoughtful, receptive, and serious about getting better.</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But that's also what makes you thoughtful, receptive, and serious about getting better.</span>
+                        <span class="lang-es">Pero eso también es lo que te hace reflexivo, receptivo y comprometido con mejorar.</span>
+                    </p>
                 </div>
             </article>
 
             <!-- Hypervigilance -->
             <article class="trait-card">
-                <div class="trait-title"><h3>Hypervigilance</h3></div>
+                <div class="trait-title">
+                    <h3>
+                        <span class="lang-en">Hypervigilance</span>
+                        <span class="lang-es">Hipervigilancia</span>
+                    </h3>
+                </div>
                 <div class="trait-wound">
-                    <p class="label">The Wound</p>
-                    <p>You say your nervous system never relaxes because your home was unpredictable.</p>
+                    <p class="label">
+                        <span class="lang-en">The Wound</span>
+                        <span class="lang-es">La Herida</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">You say your nervous system never relaxes because your home was unpredictable.</span>
+                        <span class="lang-es">Dices que tu sistema nervioso nunca se relaja porque tu hogar era impredecible.</span>
+                    </p>
                 </div>
                 <div class="trait-divider">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -747,8 +1050,14 @@
                     </svg>
                 </div>
                 <div class="trait-strength">
-                    <p class="label">The Strength</p>
-                    <p>But isn't that also why you're perceptive, quick-thinking, and never caught off guard?</p>
+                    <p class="label">
+                        <span class="lang-en">The Strength</span>
+                        <span class="lang-es">La Fortaleza</span>
+                    </p>
+                    <p>
+                        <span class="lang-en">But isn't that also why you're perceptive, quick-thinking, and never caught off guard?</span>
+                        <span class="lang-es">Pero ¿no es eso también por lo que eres perceptivo, de pensamiento rápido y nunca te toman desprevenido?</span>
+                    </p>
                 </div>
             </article>
         </div>
@@ -760,78 +1069,199 @@
             <svg class="metaphor-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z" />
             </svg>
-            <h2>The Sword Metaphor</h2>
-            <p>The traits you're most ashamed of are often just the dark side of something light. Your sharp edges didn't appear out of nowhere—they're often the byproduct of something useful: a strength turned up too high, or a gift handled without guidance.</p>
-            <p>Think about a sword. It's powerful, precise, designed to cut through resistance. But if it's double-edged—and most swords and strengths are—then sometimes it nicks you on the back swing. That doesn't mean you throw the sword away. It means you learn how to hold it properly, because most traits worth having come with risk.</p>
+            <h2>
+                <span class="lang-en">The Sword Metaphor</span>
+                <span class="lang-es">La Metáfora de la Espada</span>
+            </h2>
+            <p>
+                <span class="lang-en">The traits you're most ashamed of are often just the dark side of something light. Your sharp edges didn't appear out of nowhere—they're often the byproduct of something useful: a strength turned up too high, or a gift handled without guidance.</span>
+                <span class="lang-es">Los rasgos de los que más te avergüenzas a menudo son solo el lado oscuro de algo luminoso. Tus aristas no aparecieron de la nada—a menudo son el subproducto de algo útil: una fortaleza llevada al extremo, o un don manejado sin orientación.</span>
+            </p>
+            <p>
+                <span class="lang-en">Think about a sword. It's powerful, precise, designed to cut through resistance. But if it's double-edged—and most swords and strengths are—then sometimes it nicks you on the back swing. That doesn't mean you throw the sword away. It means you learn how to hold it properly, because most traits worth having come with risk.</span>
+                <span class="lang-es">Piensa en una espada. Es poderosa, precisa, diseñada para cortar a través de la resistencia. Pero si es de doble filo—y la mayoría de las espadas y fortalezas lo son—a veces te corta en el movimiento de retorno. Eso no significa que debas tirar la espada. Significa que debes aprender a sostenerla correctamente, porque la mayoría de los rasgos que vale la pena tener vienen con riesgo.</span>
+            </p>
         </div>
     </section>
 
     <!-- Entangled Truth -->
     <div class="content">
         <section class="section">
-            <h2>The Entangled Truth</h2>
-            <p>The truth is messier than a single cause, because every trait we have is entangled. Wounds and gifts often share a root:</p>
+            <h2>
+                <span class="lang-en">The Entangled Truth</span>
+                <span class="lang-es">La Verdad Entrelazada</span>
+            </h2>
+            <p>
+                <span class="lang-en">The truth is messier than a single cause, because every trait we have is entangled. Wounds and gifts often share a root:</span>
+                <span class="lang-es">La verdad es más desordenada que una sola causa, porque cada rasgo que tenemos está entrelazado. Las heridas y los dones a menudo comparten una raíz:</span>
+            </p>
             <ul class="insight-list">
-                <li>The self-reliance you're proud of might come from the same childhood where you couldn't rely on anyone else.</li>
-                <li>The confidence you carry may have started as a defense against ever feeling small or dismissed again.</li>
-                <li>Even your drive to succeed might be rooted in the fear of not being good enough.</li>
+                <li>
+                    <span class="lang-en">The self-reliance you're proud of might come from the same childhood where you couldn't rely on anyone else.</span>
+                    <span class="lang-es">La autosuficiencia de la que estás orgulloso podría venir de la misma infancia donde no podías depender de nadie más.</span>
+                </li>
+                <li>
+                    <span class="lang-en">The confidence you carry may have started as a defense against ever feeling small or dismissed again.</span>
+                    <span class="lang-es">La confianza que llevas puede haber comenzado como una defensa contra volver a sentirte pequeño o ignorado.</span>
+                </li>
+                <li>
+                    <span class="lang-en">Even your drive to succeed might be rooted in the fear of not being good enough.</span>
+                    <span class="lang-es">Incluso tu impulso por triunfar podría estar arraigado en el miedo a no ser suficientemente bueno.</span>
+                </li>
             </ul>
-            <p>But this perspective requires maturity. It's simpler to cast yourself as the victim of bad parenting than to reckon with a complicated inheritance. It's easier to say "they hurt me" than to admit "they shaped me in ways I'm still figuring out."</p>
+            <p>
+                <span class="lang-en">But this perspective requires maturity. It's simpler to cast yourself as the victim of bad parenting than to reckon with a complicated inheritance. It's easier to say "they hurt me" than to admit "they shaped me in ways I'm still figuring out."</span>
+                <span class="lang-es">Pero esta perspectiva requiere madurez. Es más simple presentarte como víctima de una mala crianza que enfrentarte a una herencia complicada. Es más fácil decir "me hirieron" que admitir "me moldearon de maneras que todavía estoy descubriendo."</span>
+            </p>
         </section>
 
         <div class="divider"><span>◆</span></div>
 
         <section class="section">
-            <h2>The Cultural Narrative</h2>
-            <p>The cultural narrative rewards blaming your parents more than it does understanding them. Therapy turns them into villains. Instagram makes them punchlines. But how often do you thank them in the same breath that you critique them?</p>
-            <p>None of this excuses abuse, neglect, or dysfunction—but it does ask for honesty.</p>
+            <h2>
+                <span class="lang-en">The Cultural Narrative</span>
+                <span class="lang-es">La Narrativa Cultural</span>
+            </h2>
+            <p>
+                <span class="lang-en">The cultural narrative rewards blaming your parents more than it does understanding them. Therapy turns them into villains. Instagram makes them punchlines. But how often do you thank them in the same breath that you critique them?</span>
+                <span class="lang-es">La narrativa cultural recompensa culpar a tus padres más de lo que recompensa entenderlos. La terapia los convierte en villanos. Instagram los convierte en chistes. Pero ¿con qué frecuencia les agradeces en el mismo aliento en que los criticas?</span>
+            </p>
+            <p>
+                <span class="lang-en">None of this excuses abuse, neglect, or dysfunction—but it does ask for honesty.</span>
+                <span class="lang-es">Nada de esto excusa el abuso, la negligencia o la disfunción—pero sí pide honestidad.</span>
+            </p>
 
             <div class="key-message">
-                <p>If you're going to draw a straight line from your childhood to your flaws, you should trace that same lineage to your strengths.</p>
+                <p>
+                    <span class="lang-en">If you're going to draw a straight line from your childhood to your flaws, you should trace that same lineage to your strengths.</span>
+                    <span class="lang-es">Si vas a trazar una línea recta desde tu infancia hasta tus defectos, deberías trazar ese mismo linaje hasta tus fortalezas.</span>
+                </p>
             </div>
 
-            <p>If you can't let your parents take credit for what's right with you, maybe you shouldn't be so quick to make them the villains for what's wrong.</p>
+            <p>
+                <span class="lang-en">If you can't let your parents take credit for what's right with you, maybe you shouldn't be so quick to make them the villains for what's wrong.</span>
+                <span class="lang-es">Si no puedes dejar que tus padres se lleven el crédito por lo que está bien en ti, quizás no deberías ser tan rápido en convertirlos en villanos por lo que está mal.</span>
+            </p>
         </section>
 
         <div class="divider"><span>◆</span></div>
 
         <section class="section">
-            <h2>A Complicated Inheritance</h2>
-            <p>It really is a rite of passage to lay our shortcomings at the feet of our parents. Why would we want to own our shortcomings when there's such an obvious source from our past?</p>
-            <p>But naturally, there's this desire to own our successes and outsource our failures. It's a kind of victim mentality, even for people who don't call themselves victims—even for people who have alchemized stuff that was really off-putting, a big setback, a huge hurdle to overcome from their childhood.</p>
-            <p>It's a complicated inheritance. That's the right way to think about it.</p>
-            <p>The impact your childhood had on you—your parents, your upbringing, the way kids in school treated you—all of these things contribute to this big melting pot. It's an eye of newt and a month of being ostracized in gym class and a mum who didn't give you enough physical affection, all mixed up in this big soup. And then you don't know what it's going to turn into. It's really hard to draw the line to work out where that lineage comes from.</p>
+            <h2>
+                <span class="lang-en">A Complicated Inheritance</span>
+                <span class="lang-es">Una Herencia Complicada</span>
+            </h2>
+            <p>
+                <span class="lang-en">It really is a rite of passage to lay our shortcomings at the feet of our parents. Why would we want to own our shortcomings when there's such an obvious source from our past?</span>
+                <span class="lang-es">Realmente es un rito de iniciación depositar nuestras deficiencias a los pies de nuestros padres. ¿Por qué querríamos apropiarnos de nuestras deficiencias cuando hay una fuente tan obvia en nuestro pasado?</span>
+            </p>
+            <p>
+                <span class="lang-en">But naturally, there's this desire to own our successes and outsource our failures. It's a kind of victim mentality, even for people who don't call themselves victims—even for people who have alchemized stuff that was really off-putting, a big setback, a huge hurdle to overcome from their childhood.</span>
+                <span class="lang-es">Pero naturalmente, existe este deseo de apropiarnos de nuestros éxitos y externalizar nuestros fracasos. Es una especie de mentalidad de víctima, incluso para personas que no se llaman a sí mismas víctimas—incluso para personas que han transformado cosas que eran realmente desagradables, un gran retroceso, un obstáculo enorme que superar desde su infancia.</span>
+            </p>
+            <p>
+                <span class="lang-en">It's a complicated inheritance. That's the right way to think about it.</span>
+                <span class="lang-es">Es una herencia complicada. Esa es la forma correcta de pensarlo.</span>
+            </p>
+            <p>
+                <span class="lang-en">The impact your childhood had on you—your parents, your upbringing, the way kids in school treated you—all of these things contribute to this big melting pot. It's an eye of newt and a month of being ostracized in gym class and a mum who didn't give you enough physical affection, all mixed up in this big soup. And then you don't know what it's going to turn into. It's really hard to draw the line to work out where that lineage comes from.</span>
+                <span class="lang-es">El impacto que tu infancia tuvo en ti—tus padres, tu crianza, la forma en que los niños en la escuela te trataron—todas estas cosas contribuyen a este gran crisol. Es un ojo de tritón y un mes de ser marginado en la clase de gimnasia y una madre que no te dio suficiente afecto físico, todo mezclado en esta gran sopa. Y luego no sabes en qué se va a convertir. Es realmente difícil trazar la línea para descubrir de dónde viene ese linaje.</span>
+            </p>
         </section>
 
         <div class="divider"><span>◆</span></div>
 
         <section class="section">
-            <h2>The Ryan Long Example</h2>
-            <p>I've seen in myself and in many others this desire to blame parents for anxious attachment, for never feeling regulated, for struggling to connect with people, for low self-esteem, for the inability to open up. And you go, "Okay, but all of those shortcomings typically have something else going on which you're really proud of."</p>
-            <p>Ryan Long, the Canadian comedian, first got me thinking about this about a year ago. He was talking about how he writes these sketches—completely obsessed, totally consumed, thinking about exactly how to perfect each line, refining each bit a little more for his next stand-up.</p>
-            <p>And then it bleeds over into his personal life: his friendships, his relationships, his family life, the way he thinks about his apartment. He doesn't get to turn off the obsessive, perfectionistic, hard-charging mindset. He can't compartmentalize it only around work.</p>
-            <p>So he has to contend with this complicated set of traits—the thing he really values in one area can actually be a vulnerability, weakness, or frustration in another area.</p>
-            <p>That's an obvious example because it's the same trait. But sometimes it's different things: your comfort with solitude, which has meant you're fine being an entrepreneur or taking risks or traveling on your own, shows up differently in another area of your life where you struggle to open up. The lineage between those two is harder to work out, but they still probably have a similar root.</p>
+            <h2>
+                <span class="lang-en">The Ryan Long Example</span>
+                <span class="lang-es">El Ejemplo de Ryan Long</span>
+            </h2>
+            <p>
+                <span class="lang-en">I've seen in myself and in many others this desire to blame parents for anxious attachment, for never feeling regulated, for struggling to connect with people, for low self-esteem, for the inability to open up. And you go, "Okay, but all of those shortcomings typically have something else going on which you're really proud of."</span>
+                <span class="lang-es">He visto en mí mismo y en muchos otros este deseo de culpar a los padres por el apego ansioso, por nunca sentirse regulado, por tener dificultades para conectar con las personas, por la baja autoestima, por la incapacidad de abrirse. Y dices, "Está bien, pero todas esas deficiencias típicamente tienen algo más sucediendo de lo que estás realmente orgulloso."</span>
+            </p>
+            <p>
+                <span class="lang-en">Ryan Long, the Canadian comedian, first got me thinking about this about a year ago. He was talking about how he writes these sketches—completely obsessed, totally consumed, thinking about exactly how to perfect each line, refining each bit a little more for his next stand-up.</span>
+                <span class="lang-es">Ryan Long, el comediante canadiense, me hizo pensar en esto por primera vez hace aproximadamente un año. Estaba hablando de cómo escribe estos sketches—completamente obsesionado, totalmente consumido, pensando exactamente en cómo perfeccionar cada línea, refinando cada parte un poco más para su próximo show.</span>
+            </p>
+            <p>
+                <span class="lang-en">And then it bleeds over into his personal life: his friendships, his relationships, his family life, the way he thinks about his apartment. He doesn't get to turn off the obsessive, perfectionistic, hard-charging mindset. He can't compartmentalize it only around work.</span>
+                <span class="lang-es">Y luego se filtra en su vida personal: sus amistades, sus relaciones, su vida familiar, la forma en que piensa sobre su apartamento. No puede apagar la mentalidad obsesiva, perfeccionista y de alta exigencia. No puede compartimentarla solo alrededor del trabajo.</span>
+            </p>
+            <p>
+                <span class="lang-en">So he has to contend with this complicated set of traits—the thing he really values in one area can actually be a vulnerability, weakness, or frustration in another area.</span>
+                <span class="lang-es">Así que tiene que lidiar con este conjunto complicado de rasgos—lo que realmente valora en un área puede en realidad ser una vulnerabilidad, debilidad o frustración en otra área.</span>
+            </p>
+            <p>
+                <span class="lang-en">That's an obvious example because it's the same trait. But sometimes it's different things: your comfort with solitude, which has meant you're fine being an entrepreneur or taking risks or traveling on your own, shows up differently in another area of your life where you struggle to open up. The lineage between those two is harder to work out, but they still probably have a similar root.</span>
+                <span class="lang-es">Ese es un ejemplo obvio porque es el mismo rasgo. Pero a veces son cosas diferentes: tu comodidad con la soledad, que ha significado que estés bien siendo emprendedor o tomando riesgos o viajando solo, aparece de manera diferente en otra área de tu vida donde luchas por abrirte. El linaje entre esos dos es más difícil de descifrar, pero probablemente todavía tienen una raíz similar.</span>
+            </p>
         </section>
 
         <div class="divider"><span>◆</span></div>
 
         <section class="section">
-            <h2>The Genetic Factor</h2>
-            <p>So much of this is genetically predetermined. We look at our upbringings from an environmental standpoint and say, "Well, this is something that could have been changed." But so much of it is just our genetic predisposition—and that couldn't have been changed, because if it was changed, you wouldn't be here. You wouldn't be you. It would be someone else.</p>
+            <h2>
+                <span class="lang-en">The Genetic Factor</span>
+                <span class="lang-es">El Factor Genético</span>
+            </h2>
+            <p>
+                <span class="lang-en">So much of this is genetically predetermined. We look at our upbringings from an environmental standpoint and say, "Well, this is something that could have been changed." But so much of it is just our genetic predisposition—and that couldn't have been changed, because if it was changed, you wouldn't be here. You wouldn't be you. It would be someone else.</span>
+                <span class="lang-es">Mucho de esto está predeterminado genéticamente. Miramos nuestra crianza desde un punto de vista ambiental y decimos, "Bueno, esto es algo que podría haberse cambiado." Pero mucho de ello es simplemente nuestra predisposición genética—y eso no podría haberse cambiado, porque si se hubiera cambiado, no estarías aquí. No serías tú. Sería otra persona.</span>
+            </p>
         </section>
     </div>
 
     <!-- Conclusion -->
     <section class="conclusion">
         <div class="conclusion-content">
-            <h2>In Summary</h2>
-            <p>That's the parental attribution error: the tendency to blame our parents for our flaws while taking personal credit for our strengths—when often, both come from the same source.</p>
+            <h2>
+                <span class="lang-en">In Summary</span>
+                <span class="lang-es">En Resumen</span>
+            </h2>
+            <p>
+                <span class="lang-en">That's the parental attribution error: the tendency to blame our parents for our flaws while taking personal credit for our strengths—when often, both come from the same source.</span>
+                <span class="lang-es">Ese es el error de atribución parental: la tendencia a culpar a nuestros padres por nuestros defectos mientras nos llevamos el crédito personal por nuestras fortalezas—cuando a menudo, ambos provienen de la misma fuente.</span>
+            </p>
         </div>
     </section>
 
     <footer>
-        <p>Based on content from <a href="https://www.youtube.com/watch?v=kZuUKK607g0" target="_blank">Modern Wisdom</a></p>
+        <p>
+            <span class="lang-en">Based on content from <a href="https://www.youtube.com/watch?v=kZuUKK607g0" target="_blank">Modern Wisdom</a></span>
+            <span class="lang-es">Basado en contenido de <a href="https://www.youtube.com/watch?v=kZuUKK607g0" target="_blank">Modern Wisdom</a></span>
+        </p>
     </footer>
+
+    <script>
+        function setLanguage(lang) {
+            const body = document.body;
+            const btnEn = document.getElementById('btn-en');
+            const btnEs = document.getElementById('btn-es');
+
+            if (lang === 'es') {
+                body.classList.add('spanish');
+                btnEs.classList.add('active');
+                btnEn.classList.remove('active');
+                document.documentElement.lang = 'es';
+            } else {
+                body.classList.remove('spanish');
+                btnEn.classList.add('active');
+                btnEs.classList.remove('active');
+                document.documentElement.lang = 'en';
+            }
+
+            // Save preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load saved preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) {
+                setLanguage(savedLang);
+            }
+        });
+    </script>
 </body>
 </html>
