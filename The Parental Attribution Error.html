@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Parental Attribution Error</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAF7F2;
+            --color-bg-alt: #F3EDE4;
+            --color-text: #2C2825;
+            --color-text-muted: #6B6560;
+            --color-wound: #B85C38;
+            --color-wound-bg: #FDF5F2;
+            --color-wound-border: #E8D5CE;
+            --color-strength: #4A7C6F;
+            --color-strength-bg: #F2F7F5;
+            --color-strength-border: #C8DDD6;
+            --color-accent: #8B7355;
+            --color-divider: #E0D8CE;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Source Serif 4', Georgia, serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 18px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 115, 85, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 500;
+            line-height: 1.1;
+            max-width: 14ch;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--color-text-muted);
+            max-width: 40ch;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(5px); }
+        }
+
+        /* Main Content */
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 3rem;
+            height: 2px;
+            background: var(--color-accent);
+        }
+
+        .section p {
+            margin-bottom: 1.25rem;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background: linear-gradient(180deg, transparent 60%, rgba(184, 92, 56, 0.15) 60%);
+            padding: 0 0.1em;
+        }
+
+        .pullquote {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--color-accent);
+            border-left: 3px solid var(--color-accent);
+            padding-left: 1.5rem;
+            margin: 2.5rem 0;
+            line-height: 1.5;
+        }
+
+        .callout {
+            background: var(--color-bg-alt);
+            padding: 1.5rem 2rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        /* Double-Edged Sword Section */
+        .sword-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .sword-section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 3rem;
+        }
+
+        .sword-section-header h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .sword-section-header p {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+        }
+
+        .trait-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .trait-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(44, 40, 37, 0.06);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .trait-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(44, 40, 37, 0.1);
+        }
+
+        .trait-title {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 1.25rem 1.5rem 1rem;
+            border-bottom: 1px solid var(--color-divider);
+        }
+
+        .trait-title h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .trait-wound {
+            padding: 1.25rem 1.5rem;
+            background: var(--color-wound-bg);
+            border-right: 1px solid var(--color-wound-border);
+        }
+
+        .trait-wound .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-wound);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .trait-wound p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--color-text);
+        }
+
+        .trait-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 0.5rem;
+            background: white;
+        }
+
+        .trait-divider svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-accent);
+        }
+
+        .trait-strength {
+            padding: 1.25rem 1.5rem;
+            background: var(--color-strength-bg);
+            border-left: 1px solid var(--color-strength-border);
+        }
+
+        .trait-strength .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-strength);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .trait-strength p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--color-text);
+        }
+
+        /* Metaphor Section */
+        .metaphor-section {
+            background: var(--color-bg-alt);
+            padding: 5rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .metaphor-content {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .metaphor-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            color: var(--color-accent);
+        }
+
+        .metaphor-content h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .metaphor-content p {
+            text-align: left;
+            margin-bottom: 1.25rem;
+        }
+
+        /* List styling */
+        .insight-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .insight-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .insight-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 6px;
+            height: 6px;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        /* Key Message */
+        .key-message {
+            background: linear-gradient(135deg, var(--color-wound-bg) 0%, var(--color-strength-bg) 100%);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .key-message p {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--color-text);
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+            gap: 1rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--color-divider);
+        }
+
+        .divider span {
+            color: var(--color-text-muted);
+            font-size: 1.2rem;
+        }
+
+        /* Conclusion */
+        .conclusion {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--color-bg-alt);
+        }
+
+        .conclusion-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .conclusion h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .conclusion p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--color-text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            html {
+                font-size: 16px;
+            }
+
+            .hero {
+                min-height: 60vh;
+                padding: 3rem 1.5rem;
+            }
+
+            .content {
+                padding: 3rem 1.5rem 4rem;
+            }
+
+            .trait-card {
+                grid-template-columns: 1fr;
+            }
+
+            .trait-wound {
+                border-right: none;
+                border-bottom: 1px solid var(--color-wound-border);
+            }
+
+            .trait-divider {
+                padding: 0.75rem;
+            }
+
+            .trait-divider svg {
+                transform: rotate(90deg);
+            }
+
+            .trait-strength {
+                border-left: none;
+                border-top: 1px solid var(--color-strength-border);
+            }
+
+            .sword-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .metaphor-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .pullquote {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <header class="hero">
+        <p class="hero-eyebrow">From Modern Wisdom</p>
+        <h1>The Parental Attribution Error</h1>
+        <p class="hero-subtitle">We blame our parents for our flaws while claiming our strengths as our own—but what if both come from the same source?</p>
+        <div class="scroll-indicator">
+            <span>Read</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+        </div>
+    </header>
+
+    <!-- Core Concept -->
+    <main class="content">
+        <section class="section">
+            <h2>The Core Concept</h2>
+            <p>We love blaming our parents. It's practically a rite of passage in modern psychology. But there's a double standard buried in the trend: we attribute what's broken in us to our upbringings while claiming that what's strong is ours alone.</p>
+            <p>Call it the <span class="highlight">parental attribution error</span>.</p>
+            <p>It's similar to the fundamental attribution error, where we blame others' actions on their character but excuse our own by pointing to circumstance. <em>"I cut that guy off because I'm late for work. He cut me off because he's a jerk."</em> It's a skewed way of assigning credit and blame—we externalize the bad and internalize the good. We're quick to blame and slow to credit.</p>
+        </section>
+    </main>
+
+    <!-- Double-Edged Sword Examples -->
+    <section class="sword-section">
+        <div class="sword-section-header">
+            <h2>The Double-Edged Sword</h2>
+            <p>Consider how the same experiences that create our wounds often forge our strengths.</p>
+        </div>
+
+        <div class="trait-grid">
+            <!-- Anxious Attachment -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Anxious Attachment</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You say you're anxiously attached because no one held you when you needed it.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But isn't your ability to be alone with your emotions and endure discomfort quietly also forged in the same crucible?</p>
+                </div>
+            </article>
+
+            <!-- Perfectionism -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Perfectionism</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You blame your parents for pushing you too hard in school, convinced it made you perfectionistic and neurotic.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But when was the last time you acknowledged that same pressure gave you ambition, discipline, and drive?</p>
+                </div>
+            </article>
+
+            <!-- Fear of Failure -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Fear of Failure</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You point to a childhood where mistakes weren't tolerated as the reason you fear failure.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But what about your meticulousness, your standards, your refusal to phone it in?</p>
+                </div>
+            </article>
+
+            <!-- Attunement to Others -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Attunement to Others</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You complain that no one ever asked what you wanted growing up.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But could that also be why you're so tuned in to what everyone else needs?</p>
+                </div>
+            </article>
+
+            <!-- Low Self-Worth -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Low Self-Worth</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You say your low self-worth comes from never being praised.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But isn't that the same fuel that makes you outwork everyone around you?</p>
+                </div>
+            </article>
+
+            <!-- Conflict Avoidance -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Conflict Avoidance</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You trace your conflict avoidance back to all the shouting at home.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But isn't that also where your talent for de-escalation and emotional radar came from?</p>
+                </div>
+            </article>
+
+            <!-- Hyper-Independence -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Hyper-Independence</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You chalk up your hyper-independence to not being able to trust anyone.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But isn't that also what made you capable, adaptable, and calm under pressure?</p>
+                </div>
+            </article>
+
+            <!-- Emotional Guardedness -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Emotional Guardedness</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You say you're emotionally guarded because no one took your feelings seriously.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But isn't that also why you're steady when the people around you fall apart?</p>
+                </div>
+            </article>
+
+            <!-- People-Pleasing -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>People-Pleasing</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You've labeled yourself a people pleaser because you had to keep the peace at home.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But maybe that's also where your social fluency and emotional intelligence were born.</p>
+                </div>
+            </article>
+
+            <!-- Poor Boundaries -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Poor Boundaries</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You blame your poor boundaries on parents who didn't respect yours.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But isn't that also why you're so careful not to cross anyone else's?</p>
+                </div>
+            </article>
+
+            <!-- Fear of Being a Burden -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Fear of Being a Burden</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You say your fear of being a burden comes from being treated like one.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But isn't that the same fear that now makes you reliable, disciplined, and impossible to disappoint?</p>
+                </div>
+            </article>
+
+            <!-- Sensitivity to Criticism -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Sensitivity to Criticism</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You attribute your sensitivity to criticism to all the judgment you grew up with.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But that's also what makes you thoughtful, receptive, and serious about getting better.</p>
+                </div>
+            </article>
+
+            <!-- Hypervigilance -->
+            <article class="trait-card">
+                <div class="trait-title"><h3>Hypervigilance</h3></div>
+                <div class="trait-wound">
+                    <p class="label">The Wound</p>
+                    <p>You say your nervous system never relaxes because your home was unpredictable.</p>
+                </div>
+                <div class="trait-divider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <div class="trait-strength">
+                    <p class="label">The Strength</p>
+                    <p>But isn't that also why you're perceptive, quick-thinking, and never caught off guard?</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Sword Metaphor -->
+    <section class="metaphor-section">
+        <div class="metaphor-content">
+            <svg class="metaphor-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z" />
+            </svg>
+            <h2>The Sword Metaphor</h2>
+            <p>The traits you're most ashamed of are often just the dark side of something light. Your sharp edges didn't appear out of nowhere—they're often the byproduct of something useful: a strength turned up too high, or a gift handled without guidance.</p>
+            <p>Think about a sword. It's powerful, precise, designed to cut through resistance. But if it's double-edged—and most swords and strengths are—then sometimes it nicks you on the back swing. That doesn't mean you throw the sword away. It means you learn how to hold it properly, because most traits worth having come with risk.</p>
+        </div>
+    </section>
+
+    <!-- Entangled Truth -->
+    <div class="content">
+        <section class="section">
+            <h2>The Entangled Truth</h2>
+            <p>The truth is messier than a single cause, because every trait we have is entangled. Wounds and gifts often share a root:</p>
+            <ul class="insight-list">
+                <li>The self-reliance you're proud of might come from the same childhood where you couldn't rely on anyone else.</li>
+                <li>The confidence you carry may have started as a defense against ever feeling small or dismissed again.</li>
+                <li>Even your drive to succeed might be rooted in the fear of not being good enough.</li>
+            </ul>
+            <p>But this perspective requires maturity. It's simpler to cast yourself as the victim of bad parenting than to reckon with a complicated inheritance. It's easier to say "they hurt me" than to admit "they shaped me in ways I'm still figuring out."</p>
+        </section>
+
+        <div class="divider"><span>◆</span></div>
+
+        <section class="section">
+            <h2>The Cultural Narrative</h2>
+            <p>The cultural narrative rewards blaming your parents more than it does understanding them. Therapy turns them into villains. Instagram makes them punchlines. But how often do you thank them in the same breath that you critique them?</p>
+            <p>None of this excuses abuse, neglect, or dysfunction—but it does ask for honesty.</p>
+
+            <div class="key-message">
+                <p>If you're going to draw a straight line from your childhood to your flaws, you should trace that same lineage to your strengths.</p>
+            </div>
+
+            <p>If you can't let your parents take credit for what's right with you, maybe you shouldn't be so quick to make them the villains for what's wrong.</p>
+        </section>
+
+        <div class="divider"><span>◆</span></div>
+
+        <section class="section">
+            <h2>A Complicated Inheritance</h2>
+            <p>It really is a rite of passage to lay our shortcomings at the feet of our parents. Why would we want to own our shortcomings when there's such an obvious source from our past?</p>
+            <p>But naturally, there's this desire to own our successes and outsource our failures. It's a kind of victim mentality, even for people who don't call themselves victims—even for people who have alchemized stuff that was really off-putting, a big setback, a huge hurdle to overcome from their childhood.</p>
+            <p>It's a complicated inheritance. That's the right way to think about it.</p>
+            <p>The impact your childhood had on you—your parents, your upbringing, the way kids in school treated you—all of these things contribute to this big melting pot. It's an eye of newt and a month of being ostracized in gym class and a mum who didn't give you enough physical affection, all mixed up in this big soup. And then you don't know what it's going to turn into. It's really hard to draw the line to work out where that lineage comes from.</p>
+        </section>
+
+        <div class="divider"><span>◆</span></div>
+
+        <section class="section">
+            <h2>The Ryan Long Example</h2>
+            <p>I've seen in myself and in many others this desire to blame parents for anxious attachment, for never feeling regulated, for struggling to connect with people, for low self-esteem, for the inability to open up. And you go, "Okay, but all of those shortcomings typically have something else going on which you're really proud of."</p>
+            <p>Ryan Long, the Canadian comedian, first got me thinking about this about a year ago. He was talking about how he writes these sketches—completely obsessed, totally consumed, thinking about exactly how to perfect each line, refining each bit a little more for his next stand-up.</p>
+            <p>And then it bleeds over into his personal life: his friendships, his relationships, his family life, the way he thinks about his apartment. He doesn't get to turn off the obsessive, perfectionistic, hard-charging mindset. He can't compartmentalize it only around work.</p>
+            <p>So he has to contend with this complicated set of traits—the thing he really values in one area can actually be a vulnerability, weakness, or frustration in another area.</p>
+            <p>That's an obvious example because it's the same trait. But sometimes it's different things: your comfort with solitude, which has meant you're fine being an entrepreneur or taking risks or traveling on your own, shows up differently in another area of your life where you struggle to open up. The lineage between those two is harder to work out, but they still probably have a similar root.</p>
+        </section>
+
+        <div class="divider"><span>◆</span></div>
+
+        <section class="section">
+            <h2>The Genetic Factor</h2>
+            <p>So much of this is genetically predetermined. We look at our upbringings from an environmental standpoint and say, "Well, this is something that could have been changed." But so much of it is just our genetic predisposition—and that couldn't have been changed, because if it was changed, you wouldn't be here. You wouldn't be you. It would be someone else.</p>
+        </section>
+    </div>
+
+    <!-- Conclusion -->
+    <section class="conclusion">
+        <div class="conclusion-content">
+            <h2>In Summary</h2>
+            <p>That's the parental attribution error: the tendency to blame our parents for our flaws while taking personal credit for our strengths—when often, both come from the same source.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Based on content from <a href="https://www.youtube.com/watch?v=kZuUKK607g0" target="_blank">Modern Wisdom</a></p>
+    </footer>
+</body>
+</html>
