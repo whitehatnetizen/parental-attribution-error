@@ -1255,12 +1255,10 @@
             localStorage.setItem('preferredLanguage', lang);
         }
 
-        // Load saved preference on page load
+        // Load saved preference on page load (default to Spanish)
         document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('preferredLanguage');
-            if (savedLang) {
-                setLanguage(savedLang);
-            }
+            const savedLang = localStorage.getItem('preferredLanguage') || 'es';
+            setLanguage(savedLang);
         });
     </script>
 </body>
